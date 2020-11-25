@@ -1,14 +1,13 @@
 # How to run
-_______
+------
 
-Ready to run in a few lines 
+Ready to run in a few lines :
 
-1. `cd` into the `posenet` directory.
-
-2 .`pip install -r requirements.txt`
-
-3. `python webcam_demo.py`
-_______
+ 1. `cd` into the `posenet` directory.
+ 2. `pip install -r requirements.txt`.
+ 3. `python webcam_demo.py`.
+ 
+-------
 
 ## PoseNet Python
 
