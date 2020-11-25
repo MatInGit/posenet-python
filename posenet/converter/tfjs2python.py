@@ -1,6 +1,7 @@
 import json
 import struct
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 from tensorflow.python.tools.freeze_graph import freeze_graph
 import cv2
 import numpy as np
@@ -20,7 +21,7 @@ def to_output_strided_layers(convolution_def, output_stride):
     for _a in convolution_def:
         conv_type = _a[0]
         stride = _a[1]
-        
+
         if current_stride == output_stride:
             layer_stride = 1
             layer_rate = rate
@@ -29,7 +30,7 @@ def to_output_strided_layers(convolution_def, output_stride):
             layer_stride = stride
             layer_rate = 1
             current_stride *= stride
-        
+
         buff.append({
             'blockId': block_id,
             'convType': conv_type,
