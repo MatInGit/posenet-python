@@ -1,3 +1,15 @@
+# How to run
+_______
+
+Ready to run in a few lines 
+
+1. `cd` into the `posenet` directory.
+
+2 .`pip install -r requirements.txt`
+
+3. `python webcam_demo.py`
+_______
+
 ## PoseNet Python
 
 This repository contains a pure Python implementation (multi-pose only) of the Google TensorFlow.js Posenet model. For a (slightly faster) PyTorch implementation that followed from this, see (https://github.com/rwightman/posenet-pytorch)
