@@ -1,9 +1,20 @@
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
+
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+config = ConfigProto(device_count = {'GPU': 0})
+config.gpu_options.allow_growth = True
+#session = InteractiveSession(config=config)
+
+import os
 import cv2
 import time
 import argparse
-import os
+import matplotlib.pyplot as plt
+from PIL import Image
+import numpy as np
 
 import posenet
 
@@ -19,7 +30,7 @@ args = parser.parse_args()
 
 def main():
 
-    with tf.Session() as sess:
+    with tf.Session(config=config) as sess:
         model_cfg, model_outputs = posenet.load_model(args.model, sess)
         output_stride = model_cfg['output_stride']
 
@@ -54,7 +65,7 @@ def main():
             if args.output_dir:
                 draw_image = posenet.draw_skel_and_kp(
                     draw_image, pose_scores, keypoint_scores, keypoint_coords,
-                    min_pose_score=0.25, min_part_score=0.25)
+                    min_pose_score=0.25, min_part_score=0.1)
 
                 cv2.imwrite(os.path.join(args.output_dir, os.path.relpath(f, args.image_dir)), draw_image)
 
